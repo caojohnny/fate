@@ -1,28 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "earth.h"
+#include "tle.h"
 
-int main() {
-    char *line = NULL;
+int main(int argc, char **argv) {
+    static const int line_cnt = 3;
+
+    char **lines = calloc(line_cnt, sizeof(*lines));
+    long *line_size = malloc(line_cnt * sizeof(*line_size));
     while (1) {
-        printf("Latitude: ");
-
-        size_t line_size = 0;
-        getline(&line, &line_size, stdin);
-
-        char *endptr = NULL;
-        double in = strtod(line, &endptr);
-        if (*line == *endptr || *endptr != '\n') {
-            if (strcmp(line, "exit\n") == 0) {
-                free(line);
-                return 0;
-            } else {
-                printf("Not a number: %s\n", line);
-                continue;
-            }
+        puts("Enter 3LE Data:");
+        line_size[0] = getline(lines, line_size, stdin);
+        if (strcmp(*lines, "exit\n") == 0) {
+            break;
         }
 
-        printf("Radius at %f deg is %f km\n\n", in, earth_radius(in));
+        line_size[1] = getline(lines + 1, line_size + 1, stdin);
+        if (strcmp(*(lines + 1), "exit\n") == 0) {
+            break;
+        }
+
+        line_size[2] = getline(lines + 2, line_size + 2, stdin);
+        if (strcmp(*(lines + 2), "exit\n") == 0) {
+            break;
+        }
+
+        tle_data *data = parse_3le(lines[0], lines[1], lines[2]);
+        printf("Title: %s\n", data->title);
+
+        puts("");
     }
+
+    for (int i = 0; i < line_cnt; ++i) {
+        free(lines[i]);
+    }
+    free(lines);
+    free(line_size);
 }

@@ -1,4 +1,5 @@
 #include <math.h>
+#include "earth.h"
 #include "util.h"
 
 static const double SPHEROID_A = 6379.137;

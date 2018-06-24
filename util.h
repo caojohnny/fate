@@ -24,4 +24,4 @@ inline double to_radians(double x) {
     return x * MULTIPLIER;
 }
 
-#endif /*F ATE_UTIL_H */
+#endif /* FATE_UTIL_H */
