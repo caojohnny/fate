@@ -1,6 +1,8 @@
 #ifndef FATE_TLE_H
 #define FATE_TLE_H
 
+typedef char *year;
+
 typedef struct tle_data {
     /* TITLE LINE */
     char *title;
@@ -11,12 +13,12 @@ typedef struct tle_data {
     int sat_num;
     char class;
 
-    unsigned char launch_yr;
+    year launch_yr;
     short launch_num;
     char *launch_piece;
     unsigned char launch_piece_len;
 
-    unsigned char epoch_yr;
+    year epoch_yr;
     double epoch_day;
 
     double d_mean_motion;
@@ -24,7 +26,7 @@ typedef struct tle_data {
 
     double drag;
 
-    /* ephemeris_type (0) */
+    unsigned char ephemeris;
     short element_num;
     /* checksum */
 
@@ -47,7 +49,7 @@ typedef struct tle_data {
  * @param title the title
  * @param line1 the first line
  * @param line2 the second line
- * @return the TLE parsed data
+ * @return the TLE parsed data, or NULL on failure
  */
 tle_data *tle_parse(char *title, char *line1, char *line2);
 

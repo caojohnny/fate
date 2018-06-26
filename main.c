@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
     static const int line_cnt = 3;
 
     char **lines = calloc(line_cnt, sizeof(*lines));
-    long *line_size = malloc(line_cnt * sizeof(*line_size));
+    long *line_size = calloc(line_cnt, sizeof(*line_size));
     while (1) {
         puts("Enter 3LE Data:");
         line_size[0] = getline(&lines[0], &line_size[0], stdin);
@@ -26,7 +26,14 @@ int main(int argc, char **argv) {
         }
 
         tle_data *data = tle_parse(lines[0], lines[1], lines[2]);
+        if (data == NULL) {
+            puts("Error occurred parsing data");
+            continue;
+        }
+
         printf("Title: %s\n", data->title);
+        printf("Satellite Number: %d\n", data->sat_num);
+        printf("Classifier: %c\n", data->class);
 
         tle_free(data);
 
