@@ -41,7 +41,7 @@ static int parse_line2(tle_data *data, char *line2) {
     return 1;
 }
 
-tle_data *parse_3le(char *title, char *line1, char *line2) {
+tle_data *tle_parse(char *title, char *line1, char *line2) {
     tle_data *data = new_tle_data();
     if (parse_title(data, title) == 0) {
         return NULL;
@@ -56,4 +56,10 @@ tle_data *parse_3le(char *title, char *line1, char *line2) {
     }
 
     return data;
+}
+
+void tle_free(tle_data *data) {
+    free(data->title);
+    free(data->launch_piece);
+    free(data);
 }

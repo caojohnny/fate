@@ -10,23 +10,25 @@ int main(int argc, char **argv) {
     long *line_size = malloc(line_cnt * sizeof(*line_size));
     while (1) {
         puts("Enter 3LE Data:");
-        line_size[0] = getline(lines, line_size, stdin);
-        if (strcmp(*lines, "exit\n") == 0) {
+        line_size[0] = getline(&lines[0], &line_size[0], stdin);
+        if (strcmp(lines[0], "exit\n") == 0) {
             break;
         }
 
-        line_size[1] = getline(lines + 1, line_size + 1, stdin);
-        if (strcmp(*(lines + 1), "exit\n") == 0) {
+        line_size[1] = getline(&lines[1], &line_size[1], stdin);
+        if (strcmp(lines[1], "exit\n") == 0) {
             break;
         }
 
-        line_size[2] = getline(lines + 2, line_size + 2, stdin);
-        if (strcmp(*(lines + 2), "exit\n") == 0) {
+        line_size[2] = getline(&lines[2], &line_size[2], stdin);
+        if (strcmp(lines[2], "exit\n") == 0) {
             break;
         }
 
-        tle_data *data = parse_3le(lines[0], lines[1], lines[2]);
+        tle_data *data = tle_parse(lines[0], lines[1], lines[2]);
         printf("Title: %s\n", data->title);
+
+        tle_free(data);
 
         puts("");
     }

@@ -40,6 +40,23 @@ typedef struct tle_data {
     /* checksum */
 } tle_data;
 
-tle_data *parse_3le(char *title, char *line1, char *line2);
+/**
+ * Parses and TLE-formatted data using the 3 line format
+ * that includes the title line.
+ *
+ * @param title the title
+ * @param line1 the first line
+ * @param line2 the second line
+ * @return the TLE parsed data
+ */
+tle_data *tle_parse(char *title, char *line1, char *line2);
+
+/**
+ * Relinquishes memory allocated to hold the tle_data
+ * struct.
+ *
+ * @param data the data struct to free
+ */
+void tle_free(tle_data *data);
 
 #endif /* FATE_TLE_H */
