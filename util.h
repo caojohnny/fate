@@ -26,6 +26,15 @@ inline double to_radians(double x) {
 }
 
 /**
+ * Safely frees the given pointer by checking against NULL
+ */
+inline void safe_free(void *p) {
+    if (p != NULL) {
+        free(p);
+    }
+}
+
+/**
  * Takes the substring of the given string, starting from
  * start and ending len characters later.
  *
