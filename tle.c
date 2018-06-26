@@ -332,9 +332,11 @@ tle_data *tle_parse(char *title, char *line1, char *line2) {
 }
 
 void tle_free(tle_data *data) {
-    free(data->title);
-    free(data->launch_yr);
-    free(data->launch_piece);
-    free(data->epoch_yr);
-    free(data);
+    if (data != 0) {
+        free(data->title);
+        free(data->launch_yr);
+        free(data->launch_piece);
+        free(data->epoch_yr);
+        free(data);
+    }
 }

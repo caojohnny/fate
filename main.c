@@ -29,29 +29,28 @@ int main(int argc, char **argv) {
         if (data == NULL) {
             tle_free(data);
             puts("Error occurred parsing data");
-            continue;
+        } else {
+            printf("Title: %s\n", data->title);
+            printf("Satellite Number: %d\n", data->sat_num);
+            printf("Classifier: %c\n", data->class);
+            printf("Launch Year: %s\n", data->launch_yr);
+            printf("Launch Number: %d\n", data->launch_num);
+            printf("Launch Piece: %s\n", data->launch_piece);
+            printf("Epoch Year: %s\n", data->epoch_yr);
+            printf("Epoch Day: %f\n", data->epoch_day);
+            printf("Derivative of Mean Motion / 2: %f\n", data->d_mean_motion);
+            printf("2nd Derivative of Mean Motion / 6: %f\n", data->dd_mean_motion);
+            printf("B* Drag Term: %f\n", data->drag);
+            printf("Ephemeris Type: %c\n", data->ephemeris);
+            printf("Element Number: %d\n", data->element_num);
+            printf("Inclination: %f\n", data->inclination);
+            printf("Right Node Ascension: %f\n", data->r_node_ascension);
+            printf("Eccentricity: %f\n", data->eccentricity);
+            printf("Argument of Perigee: %f\n", data->perigee_arg);
+            printf("Mean Anomaly: %f\n", data->mean_anomaly);
+            printf("Revolutions Per Day: %f\n", data->rev_per_day);
+            printf("Revolutions: %d\n", data->rev_num);
         }
-
-        printf("Title: %s\n", data->title);
-        printf("Satellite Number: %d\n", data->sat_num);
-        printf("Classifier: %c\n", data->class);
-        printf("Launch Year: %s\n", data->launch_yr);
-        printf("Launch Number: %d\n", data->launch_num);
-        printf("Launch Piece: %s\n", data->launch_piece);
-        printf("Epoch Year: %s\n", data->epoch_yr);
-        printf("Epoch Day: %f\n", data->epoch_day);
-        printf("Derivative of Mean Motion / 2: %f\n", data->d_mean_motion);
-        printf("2nd Derivative of Mean Motion / 6: %f\n", data->dd_mean_motion);
-        printf("B* Drag Term: %f\n", data->drag);
-        printf("Ephemeris Type: %c\n", data->ephemeris);
-        printf("Element Number: %d\n", data->element_num);
-        printf("Inclination: %f\n", data->inclination);
-        printf("Right Node Ascension: %f\n", data->r_node_ascension);
-        printf("Eccentricity: %f\n", data->eccentricity);
-        printf("Argument of Perigee: %f\n", data->perigee_arg);
-        printf("Mean Anomaly: %f\n", data->mean_anomaly);
-        printf("Revolutions Per Day: %f\n", data->rev_per_day);
-        printf("Revolutions: %d\n", data->rev_num);
 
         tle_free(data);
 
