@@ -33,7 +33,7 @@ typedef struct tle_data {
     /* LINE 2 */
 
     double inclination;
-    double node_ascension;
+    double r_node_ascension;
     double eccentricity;
     double perigee_arg;
     double mean_anomaly;

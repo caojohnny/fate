@@ -3,15 +3,17 @@
 #include "util.h"
 
 double square(double);
+
 double to_radians(double);
 
 char *substr(char *str, int start, int len) {
-    char *substr = malloc(len);
+    char *substr = malloc(len + 1);
     if (substr == NULL) {
         return NULL;
     }
 
     memcpy(substr, str + start, len);
+    substr[len] = '\0';
 
     return substr;
 }
