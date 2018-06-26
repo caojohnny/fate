@@ -1,6 +1,7 @@
 #ifndef FATE_UTIL_H
 #define FATE_UTIL_H
 
+#include <stdlib.h>
 #include <math.h>
 #include <assert.h>
 
@@ -23,15 +24,6 @@ inline double to_radians(double x) {
     static const double MULTIPLIER = M_PI / 180;
 
     return x * MULTIPLIER;
-}
-
-/**
- * Safely frees the given pointer by checking against NULL
- */
-inline void safe_free(void *p) {
-    if (p != NULL) {
-        free(p);
-    }
 }
 
 /**

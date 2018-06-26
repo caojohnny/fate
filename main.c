@@ -27,7 +27,6 @@ int main(int argc, char **argv) {
 
         tle_data *data = tle_parse(lines[0], lines[1], lines[2]);
         if (data == NULL) {
-            tle_free(data);
             puts("Error occurred parsing data");
         } else {
             printf("Title: %s\n", data->title);
@@ -50,9 +49,9 @@ int main(int argc, char **argv) {
             printf("Mean Anomaly: %f\n", data->mean_anomaly);
             printf("Revolutions Per Day: %f\n", data->rev_per_day);
             printf("Revolutions: %d\n", data->rev_num);
-        }
 
-        tle_free(data);
+            tle_free(data);
+        }
 
         puts("");
     }
