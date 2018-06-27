@@ -6,7 +6,7 @@ double square(double);
 
 double to_radians(double);
 
-char *substr(char *str, int start, int len) {
+char *substr(const char *str, int start, int len) {
     char *substr = malloc(len + 1);
     if (substr == NULL) {
         return NULL;
@@ -18,7 +18,7 @@ char *substr(char *str, int start, int len) {
     return substr;
 }
 
-int strl(char *str, long *value) {
+int strl(const char *str, long *value) {
     char *end_ptr = NULL;
     long result = strtol(str, end_ptr, 10);
     if (result == 0 && str == end_ptr) {
@@ -29,7 +29,7 @@ int strl(char *str, long *value) {
     return 1;
 }
 
-int strd(char *str, double *value) {
+int strd(const char *str, double *value) {
     char *end_ptr = NULL;
     double result = strtod(str, end_ptr);
     if (result == 0 && str == end_ptr) {

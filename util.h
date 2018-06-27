@@ -38,7 +38,7 @@ inline double to_radians(double x) {
  * @param len the number of characters to copy
  * @return the new substring, or NULL on failure
  */
-char *substr(char *str, int start, int len);
+char *substr(const char *str, int start, int len);
 
 /**
  * Converts a given string into a long value.
@@ -47,7 +47,7 @@ char *substr(char *str, int start, int len);
  * @param value the pointer at which to store the result
  * @return 0 on failure
  */
-int strl(char *str, long *value);
+int strl(const char *str, long *value);
 
 /**
  * Converts a given string into a double value.
@@ -56,6 +56,6 @@ int strl(char *str, long *value);
  * @param value the pointer at which to store the result
  * @return 0 on failure
  */
-int strd(char *str, double *value);
+int strd(const char *str, double *value);
 
 #endif /* FATE_UTIL_H */

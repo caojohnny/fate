@@ -17,8 +17,8 @@ static tle_data *new_tle_data() {
  * @param title the title line
  * @return 0 if invalid length
  */
-static int parse_title(tle_data *data, char *title) {
-    size_t len = strlen(title);
+static int parse_title(tle_data *data, const char *title) {
+    unsigned char len = (unsigned char) strlen(title);
     if (len > 26) {
         return 0;
     }
@@ -35,7 +35,7 @@ static int parse_title(tle_data *data, char *title) {
     return 1;
 }
 
-static int compute_checksum(char *str) {
+static int compute_checksum(const char *str) {
     int total = 0;
     for (int i = 0; i < 68; i++) {
         char c = str[i];
@@ -49,7 +49,7 @@ static int compute_checksum(char *str) {
     return total % 10;
 }
 
-static int parse_line1(tle_data *data, char *line1) {
+static int parse_line1(tle_data *data, const char *line1) {
     int checksum = line1[68] - '0';
     if (compute_checksum(line1) != checksum) {
         puts("Checksum failed");
@@ -62,7 +62,7 @@ static int parse_line1(tle_data *data, char *line1) {
         return 0;
     }
 
-    if (strl(sat_num_str, &data->sat_num) == 0) {
+    if (strl(sat_num_str, (long *) &data->sat_num) == 0) {
         free(sat_num_str);
         return 0;
     }
@@ -84,7 +84,7 @@ static int parse_line1(tle_data *data, char *line1) {
         return 0;
     }
 
-    if (strl(launch_num_str, &data->launch_num) == 0) {
+    if (strl(launch_num_str, (long *) &data->launch_num) == 0) {
         free(launch_num_str);
         return 0;
     }
@@ -96,7 +96,7 @@ static int parse_line1(tle_data *data, char *line1) {
     if (data->launch_piece == NULL) {
         return 0;
     }
-    data->launch_piece_len = strlen(data->launch_piece);
+    data->launch_piece_len = (unsigned char) strlen(data->launch_piece);
 
     /* epoch_yr */
     data->epoch_yr = substr(line1, 18, 2);
@@ -151,7 +151,7 @@ static int parse_line1(tle_data *data, char *line1) {
         return 0;
     }
 
-    if (strl(dd_mean_motion_exp_str, &dd_mean_motion_exp) == 0) {
+    if (strl(dd_mean_motion_exp_str, (long *) &dd_mean_motion_exp) == 0) {
         free(dd_mean_motion_exp_str);
         return 0;
     }
@@ -180,7 +180,7 @@ static int parse_line1(tle_data *data, char *line1) {
         return 0;
     }
 
-    if (strl(drag_exp_str, &drag_exp) == 0) {
+    if (strl(drag_exp_str, (long *) &drag_exp) == 0) {
         free(drag_exp_str);
         return 0;
     }
@@ -189,7 +189,7 @@ static int parse_line1(tle_data *data, char *line1) {
     data->drag = drag_mul * pow(10, drag_exp);
 
     /* ephemeris */
-    data->ephemeris = line1[62];
+    data->ephemeris = (unsigned char) line1[62];
 
     /* element_num */
     char *element_num_str = substr(line1, 64, 4);
@@ -197,7 +197,7 @@ static int parse_line1(tle_data *data, char *line1) {
         return 0;
     }
 
-    if (strl(element_num_str, &data->element_num) == 0) {
+    if (strl(element_num_str, (long *) &data->element_num) == 0) {
         free(element_num_str);
         return 0;
     }
@@ -207,7 +207,7 @@ static int parse_line1(tle_data *data, char *line1) {
     return 1;
 }
 
-static int parse_line2(tle_data *data, char *line2) {
+static int parse_line2(tle_data *data, const char *line2) {
     int checksum = line2[68] - '0';
     if (compute_checksum(line2) != checksum) {
         puts("Checksum failed");
@@ -302,7 +302,7 @@ static int parse_line2(tle_data *data, char *line2) {
         return 0;
     }
 
-    if (strl(rev_num_str, &data->rev_num) == 0) {
+    if (strl(rev_num_str, (long *) &data->rev_num) == 0) {
         free(rev_num_str);
         return 0;
     }
@@ -312,7 +312,7 @@ static int parse_line2(tle_data *data, char *line2) {
     return 1;
 }
 
-tle_data *tle_parse(char *title, char *line1, char *line2) {
+tle_data *tle_parse(const char *title, const char *line1, const char *line2) {
     tle_data *data = new_tle_data();
     if (parse_title(data, title) == 0) {
         return NULL;

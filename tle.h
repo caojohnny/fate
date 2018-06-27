@@ -51,7 +51,7 @@ typedef struct tle_data {
  * @param line2 the second line
  * @return the TLE parsed data, or NULL on failure
  */
-tle_data *tle_parse(char *title, char *line1, char *line2);
+tle_data *tle_parse(const char *title, const char *line1, const char *line2);
 
 /**
  * Relinquishes memory allocated to hold the tle_data

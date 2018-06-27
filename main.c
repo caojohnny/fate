@@ -10,17 +10,17 @@ int main(int argc, char **argv) {
     long *line_size = calloc(line_cnt, sizeof(*line_size));
     while (1) {
         puts("Enter 3LE Data:");
-        line_size[0] = getline(&lines[0], &line_size[0], stdin);
+        line_size[0] = getline(&lines[0], (size_t *) &line_size[0], stdin);
         if (strcmp(lines[0], "exit\n") == 0) {
             break;
         }
 
-        line_size[1] = getline(&lines[1], &line_size[1], stdin);
+        line_size[1] = getline(&lines[1], (size_t *) &line_size[1], stdin);
         if (strcmp(lines[1], "exit\n") == 0) {
             break;
         }
 
-        line_size[2] = getline(&lines[2], &line_size[2], stdin);
+        line_size[2] = getline(&lines[2], (size_t *) &line_size[2], stdin);
         if (strcmp(lines[2], "exit\n") == 0) {
             break;
         }
