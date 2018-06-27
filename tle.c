@@ -35,11 +35,9 @@ static int parse_title(tle_data *data, char *title) {
     return 1;
 }
 
-// TODO: I have no clue lol
 static int compute_checksum(char *str) {
-    int len = strlen(str);
     int total = 0;
-    for (int i = 2; i < len; i++) {
+    for (int i = 0; i < 68; i++) {
         char c = str[i];
         if (c == '-') {
             total += 1;
