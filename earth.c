@@ -2,11 +2,8 @@
 #include "earth.h"
 #include "util.h"
 
-static const double SPHEROID_A = 6379.137;
-static const double SPHEROID_B = 6356.7523;
-
-static const double SPHEROID_A_SQ = SPHEROID_A * SPHEROID_A;
-static const double SPHEROID_B_SQ = SPHEROID_B * SPHEROID_B;
+static const double SPHEROID_A_SQ = 6379.137 * 6379.137;
+static const double SPHEROID_B_SQ = 6356.7523 * 6356.7523;
 
 double earth_radius(double latitude) {
     double rad = to_radians(latitude);
