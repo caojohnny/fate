@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "tle.h"
+#include "sgp.h"
 
 int main(int argc, char **argv) {
     static const int line_cnt = 3;
@@ -49,6 +50,8 @@ int main(int argc, char **argv) {
             printf("Mean Anomaly: %f\n", data->mean_anomaly);
             printf("Revolutions Per Day: %f\n", data->rev_per_day);
             printf("Revolutions: %d\n", data->rev_num);
+
+            sgp_result result = sgp4(data, 0);
 
             tle_free(data);
         }

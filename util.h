@@ -5,8 +5,6 @@
 #include <math.h>
 #include <assert.h>
 
-#define WORK_NEEDED_ARG 20
-
 /*
  * Multiplies the given number by itself.
  *
@@ -23,6 +21,17 @@ inline double square(double x) {
  */
 inline double cube(double x) {
     return x * x * x;
+}
+
+/**
+ * Returns the absolute value x.
+ */
+inline double absd(double x) {
+    if (x < 0) {
+        return -x;
+    }
+
+    return x;
 }
 
 /*

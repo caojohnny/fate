@@ -8,6 +8,8 @@ double cube(double);
 
 double to_radians(double);
 
+double absd(double);
+
 char *substr(const char *str, int start, int len) {
     char *substr = malloc(len + 1);
     if (substr == NULL) {
