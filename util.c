@@ -4,6 +4,8 @@
 
 double square(double);
 
+double cube(double);
+
 double to_radians(double);
 
 char *substr(const char *str, int start, int len) {
@@ -20,7 +22,7 @@ char *substr(const char *str, int start, int len) {
 
 int strl(const char *str, long *value) {
     char *end_ptr = NULL;
-    long result = strtol(str, end_ptr, 10);
+    long result = strtol(str, &end_ptr, 10);
     if (result == 0 && str == end_ptr) {
         return 0;
     }
@@ -31,7 +33,7 @@ int strl(const char *str, long *value) {
 
 int strd(const char *str, double *value) {
     char *end_ptr = NULL;
-    double result = strtod(str, end_ptr);
+    double result = strtod(str, &end_ptr);
     if (result == 0 && str == end_ptr) {
         return 0;
     }

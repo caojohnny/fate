@@ -21,8 +21,8 @@ typedef struct tle_data {
     year epoch_yr;
     double epoch_day;
 
-    double d_mean_motion;
-    double dd_mean_motion;
+    double d_mean_motion; /* n_0_dot / 2 */
+    double dd_mean_motion; /* n_0_dot_dot / 6 */
 
     double drag;
 
@@ -32,12 +32,12 @@ typedef struct tle_data {
 
     /* LINE 2 */
 
-    double inclination;
-    double r_node_ascension;
-    double eccentricity;
-    double perigee_arg;
-    double mean_anomaly;
-    double rev_per_day; /* mean_motion */
+    double inclination; /* i_0 */
+    double r_node_ascension; /* omega_0 */
+    double eccentricity; /* e_0 */
+    double perigee_arg; /* w_0 */ /* TODO: Confirm letter */
+    double mean_anomaly; /* M_0 */
+    double rev_per_day; /* n_0 */
     int rev_num;
     /* checksum */
 } tle_data;

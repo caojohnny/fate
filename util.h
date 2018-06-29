@@ -5,6 +5,8 @@
 #include <math.h>
 #include <assert.h>
 
+#define WORK_NEEDED_ARG 20
+
 /*
  * Multiplies the given number by itself.
  *
@@ -12,6 +14,15 @@
  */
 inline double square(double x) {
     return x * x;
+}
+
+/**
+ * Multiplies the given number times itself 3 times.
+ *
+ * CONSTRAINT:  x <= pow(1.79E308, 1/3)
+ */
+inline double cube(double x) {
+    return x * x * x;
 }
 
 /*

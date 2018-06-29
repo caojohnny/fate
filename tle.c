@@ -5,7 +5,7 @@
 #include "util.h"
 
 static tle_data *new_tle_data() {
-    tle_data *data = calloc(1, sizeof(*data));
+    tle_data *data = malloc(sizeof(*data));
     return data;
 }
 
