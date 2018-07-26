@@ -1,15 +1,10 @@
 #include "tle.h"
+#include "vec.h"
 
 #ifndef FATE_SGP_H
 #define FATE_SGP_H
 
-typedef struct vec {
-    double x;
-    double y;
-    double z;
-} vec;
-
-typedef struct sgp_data {
+typedef struct {
     vec u; /* orientation */
     vec v;
 
@@ -17,6 +12,6 @@ typedef struct sgp_data {
     vec r_dot; /* velocity */
 } sgp_result;
 
-sgp_result sgp4(tle_data *data, long minutes_since_epoch);
+sgp_result sgp4(tle_data *data, double minutes_since_epoch);
 
 #endif /* FATE_SGP_H */

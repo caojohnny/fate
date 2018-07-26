@@ -17,7 +17,7 @@ inline double square(double x) {
 /**
  * Multiplies the given number times itself 3 times.
  *
- * CONSTRAINT:  x <= pow(1.79E308, 1/3)
+ * CONSTRAINT:  x <= 5.64E102
  */
 inline double cube(double x) {
     return x * x * x;
