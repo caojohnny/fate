@@ -13,15 +13,16 @@ static const double THREE_HALVES = 3.0 / 2.0;
 static const double TWO_THIRDS = 2.0 / 3.0;
 
 static const double a_E = 1.0;
-static const double S = 1.0 + 78.0 / XKMPER;
 static const double Q_0 = 1.88027916E-9;
 
 static const double k_e = 0.0743669161;
 static const double k_2 = 5.413080E-4;
 static const double k_4 = 0.62098875E-6;
-static const double A_3_COMMA_0 = -J_3 * a_E * a_E * a_E;
+static const double S = 1.0122292801892716;
+static const double A_3_COMMA_0 = 2.53881E-06;
 
 sgp_result sgp4(tle_data *data, double minutes_since_epoch) {
+
     double i_0 = to_radians(data->inclination);
     double OMEGA_0 = to_radians(data->r_node_ascension);
     double M_0 = to_radians(data->mean_anomaly);
@@ -37,13 +38,12 @@ sgp_result sgp4(tle_data *data, double minutes_since_epoch) {
     double d_d_n_0 = xno / (1 + delta_0); /* original mean motion */
     double d_d_a_0 = a_0 / (1 - delta_0); /* semimajor axis */
 
-    uint8_t simple = 0;
+    unsigned int simple = 0;
     if ((d_d_a_0 * (1.0 - data->eccentricity) / a_E) < (220.0 / XKMPER + a_E)) {
         simple = 1;
     }
 
     double perigee = (d_d_a_0 * (1 - data->eccentricity) - a_E) * XKMPER; /* TODO: Actual value */
-    printf("Perigee = %f\n", perigee);
     double s = S;
     double q_0_minus_s_pow_4 = Q_0;
     if (perigee >= 98 && perigee <= 156) {
