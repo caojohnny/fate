@@ -198,8 +198,8 @@ sgp_result sgp4(tle_data *data, double minutes_since_epoch) {
     vec result_U = vec_add(vec_mul(sin(u_k), M), vec_mul(cos(u_k), N));
     vec result_V = vec_add(vec_mul(cos(u_k), M), vec_mul(-sin(u_k), N));
 
-    vec result_r = vec_mul(r_k, result_U);
-    vec result_r_dot = vec_add(vec_mul(r_dot_k, result_U), vec_mul(r_f_dot_k, result_V));
+    vec result_r = vec_mul(XKMPER, vec_mul(r_k, result_U));
+    vec result_r_dot = vec_mul(XKMPER / 60, vec_add(vec_mul(r_dot_k, result_U), vec_mul(r_f_dot_k, result_V)));
 
     vec_print(result_r);
     vec_print(result_r_dot);

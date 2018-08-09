@@ -5,7 +5,7 @@
 #include <math.h>
 #include <assert.h>
 
-/*
+/**
  * Multiplies the given number by itself.
  *
  * CONSTRAINT: x <= 1.34E154
@@ -34,7 +34,7 @@ inline double absd(double x) {
     return x;
 }
 
-/*
+/**
  * Converts the given number to radians.
  *
  * CONSTRAINT: x is in degrees
