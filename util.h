@@ -24,14 +24,13 @@ inline double cube(double x) {
 }
 
 /**
- * Returns the absolute value x.
+ * Obtains the fractional portion of a double value.
+ *
+ * @param x the value which to obtain the fraction
+ * @return the fractional portion
  */
-inline double absd(double x) {
-    if (x < 0) {
-        return -x;
-    }
-
-    return x;
+inline double frac(double x) {
+    return x - (long) x;
 }
 
 /**

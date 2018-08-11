@@ -162,7 +162,7 @@ sgp_result sgp4(tle_data *data, double minutes_since_epoch) {
 
         double dE_w_i = (U - AYN_COS + AXN_SIN - E_w_i) /
                         (-AYN_SIN - AXN_COS + 1) + E_w_i;
-        if (absd(dE_w_i - E_w_i) <= 1.0E-6) {
+        if (fabs(dE_w_i - E_w_i) <= 1.0E-6) {
             break;
         }
 

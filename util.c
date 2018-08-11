@@ -8,7 +8,7 @@ double cube(double);
 
 double to_radians(double);
 
-double absd(double);
+double frac(double);
 
 char *substr(const char *str, int start, int len) {
     char *substr = malloc(len + 1);

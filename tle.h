@@ -3,7 +3,7 @@
 
 typedef char *year;
 
-typedef struct tle_data {
+typedef struct {
     /* TITLE LINE */
     char *title;
     unsigned char title_len;
