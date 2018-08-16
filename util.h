@@ -46,6 +46,18 @@ inline double to_radians(double x) {
 }
 
 /**
+ * Converts the given number to degrees.
+ *
+ * CONSTRAINT: x is in radians
+ * CONSTRAINT: x <= 9.98E305
+ */
+inline double to_degrees(double x) {
+    static const double MULTIPLIER = 180 / M_PI;
+
+    return x * MULTIPLIER;
+}
+
+/**
  * Takes the substring of the given string, starting from
  * start and ending len characters later.
  *

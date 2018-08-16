@@ -1,6 +1,8 @@
 #ifndef FATE_VEC_H
 #define FATE_VEC_H
 
+#include <stdio.h>
+
 typedef struct {
     double x;
     double y;
@@ -22,8 +24,8 @@ vec vec_mul(double, vec);
 vec vec_add(vec, vec);
 
 /**
- * Prints the given vector to stdout.
+ * Prints the given vector to the given stream.
  */
-void vec_print(vec);
+void vec_print(FILE *stream, vec);
 
 #endif /* FATE_VEC_H */

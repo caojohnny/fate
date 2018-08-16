@@ -6,6 +6,14 @@ I have most of the TLE parsing and the SGP algorithm implemented. I "verified" w
 
 Currently a WIP project.
 
+# Demo
+
+ISS locator using TLE data from SpaceTrack (a few seconds
+behind due to the target date having to be hardcoded):
+
+![Actual location](https://i.imgur.com/Ix5LNcK.png)
+![Fate](https://i.imgur.com/iEQEulD.png)
+
 # Credits
 
 Built with [CLion](https://www.jetbrains.com/clion/)
@@ -18,4 +26,5 @@ Built with [CLion](https://www.jetbrains.com/clion/)
   - [SpaceTrack orbital 3LE sets](https://www.space-track.org/#/tle)
   - [Orbital Coordinate Systems II](https://www.celestrak.com/columns/v02n02/)
   - [Orbital Coordinate Systems III](https://www.celestrak.com/columns/v02n03/)
-  - [Julian Day, Julian Date, UT, GMT, GMST, LST, GHA, LHA, RA, SHA?](http://jukaukor.mbnet.fi/astronavigation_time.html)
+  - [EGM2008 - WGS84 Version](http://earth-info.nga.mil/GandG/wgs84/gravitymod/egm2008/egm08_wgs84.html)
+  - [LLA_TO_ECI](http://download.hao.ucar.edu/archive/tidi/tools/lla_to_eci.pro)

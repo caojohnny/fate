@@ -3,6 +3,8 @@
 #include <string.h>
 #include "tle.h"
 #include "sgp.h"
+#include "astrotime.h"
+#include "eci.h"
 
 int main(int argc, char **argv) {
     static const int line_cnt = 3;
@@ -30,28 +32,13 @@ int main(int argc, char **argv) {
         if (data == NULL) {
             puts("Error occurred parsing data");
         } else {
-            printf("Title: %s\n", data->title);
-            printf("Satellite Number: %d\n", data->sat_num);
-            printf("Classifier: %c\n", data->class);
-            printf("Launch Year: %s\n", data->launch_yr);
-            printf("Launch Number: %d\n", data->launch_num);
-            printf("Launch Piece: %s\n", data->launch_piece);
-            printf("Epoch Year: %s\n", data->epoch_yr);
-            printf("Epoch Day: %f\n", data->epoch_day);
-            printf("Derivative of Mean Motion / 2: %f\n", data->d_mean_motion);
-            printf("2nd Derivative of Mean Motion / 6: %f\n", data->dd_mean_motion);
-            printf("B* Drag Term: %f\n", data->drag);
-            printf("Ephemeris Type: %c\n", data->ephemeris);
-            printf("Element Number: %d\n", data->element_num);
-            printf("Inclination: %f\n", data->inclination);
-            printf("Right Node Ascension: %f\n", data->r_node_ascension);
-            printf("Eccentricity: %f\n", data->eccentricity);
-            printf("Argument of Perigee: %f\n", data->perigee_arg);
-            printf("Mean Anomaly: %f\n", data->mean_anomaly);
-            printf("Revolutions Per Day: %f\n", data->rev_per_day);
-            printf("Revolutions: %d\n", data->rev_num);
+            jd target = to_jd(2018, 8, 16, 8, 44, 40);
+            lat_lon observer = { 47, -122 };
+            look_result look = eci_to_look(data, observer, target);
+            lat_lon sub_point = eci_to_lat_lon(data, target);
 
-            sgp_result result = sgp4(data, 0);
+            printf("Look: %f %f\n", look.azimuth, look.altitude);
+            printf("Pos: %f, %f\n", sub_point.lat, sub_point.lon);
 
             tle_free(data);
         }

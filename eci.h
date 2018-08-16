@@ -9,6 +9,7 @@
  * for an observer to a satellite, where azimuth is the
  * clockwise rotation from true north and the altitude is
  * the degrees inclination above the observation plane.
+ * Units are in degrees.
  */
 typedef struct {
     double azimuth;
@@ -18,7 +19,8 @@ typedef struct {
 
 /**
  * Represents a location on the Earth with latitude and
- * longitude coordinates. Positive north and east.
+ * longitude coordinates. Positive north and east. Units
+ * are in degrees.
  */
 typedef struct {
     double lat;
@@ -36,7 +38,7 @@ typedef struct {
  * @return the look location expressed as an azimuth and
  * altitude
  */
-look_result eci_to_look(tle_data tle, lat_lon observer, gmst time);
+look_result eci_to_look(tle_data *tle, lat_lon observer, gmst time);
 
 /**
  * Calculates the sub-point (i.e. the point below the
@@ -49,6 +51,6 @@ look_result eci_to_look(tle_data tle, lat_lon observer, gmst time);
  * position on the Earth
  * @return a set of latitude and longitude coordinates
  */
-lat_lon eci_to_lat_lon(tle_data tle, gmst time);
+lat_lon eci_to_lat_lon(tle_data *tle, gmst time);
 
 #endif /* FATE_ECI_H */

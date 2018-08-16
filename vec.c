@@ -11,6 +11,6 @@ vec vec_add(vec vector1, vec vector2) {
     return result;
 }
 
-void vec_print(vec vector) {
-    printf("{ %f, %f, %f }\n", vector.x, vector.y, vector.z);
+void vec_print(FILE *stream, vec vector) {
+    fprintf(stream, "{ %f, %f, %f }\n", vector.x, vector.y, vector.z);
 }

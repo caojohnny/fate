@@ -329,6 +329,29 @@ tle_data *tle_parse(const char *title, const char *line1, const char *line2) {
     return data;
 }
 
+void tle_print(FILE *stream, tle_data *data) {
+    fprintf(stream, "Title: %s\n", data->title);
+    fprintf(stream, "Satellite Number: %d\n", data->sat_num);
+    fprintf(stream, "Classifier: %c\n", data->class);
+    fprintf(stream, "Launch Year: %s\n", data->launch_yr);
+    fprintf(stream, "Launch Number: %d\n", data->launch_num);
+    fprintf(stream, "Launch Piece: %s\n", data->launch_piece);
+    fprintf(stream, "Epoch Year: %s\n", data->epoch_yr);
+    fprintf(stream, "Epoch Day: %f\n", data->epoch_day);
+    fprintf(stream, "Derivative of Mean Motion / 2: %f\n", data->d_mean_motion);
+    fprintf(stream, "2nd Derivative of Mean Motion / 6: %f\n", data->dd_mean_motion);
+    fprintf(stream, "B* Drag Term: %f\n", data->drag);
+    fprintf(stream, "Ephemeris Type: %c\n", data->ephemeris);
+    fprintf(stream, "Element Number: %d\n", data->element_num);
+    fprintf(stream, "Inclination: %f\n", data->inclination);
+    fprintf(stream, "Right Node Ascension: %f\n", data->r_node_ascension);
+    fprintf(stream, "Eccentricity: %f\n", data->eccentricity);
+    fprintf(stream, "Argument of Perigee: %f\n", data->perigee_arg);
+    fprintf(stream, "Mean Anomaly: %f\n", data->mean_anomaly);
+    fprintf(stream, "Revolutions Per Day: %f\n", data->rev_per_day);
+    fprintf(stream, "Revolutions: %d\n", data->rev_num);
+}
+
 void tle_free(tle_data *data) {
     free(data->title);
     free(data->launch_yr);

@@ -6,8 +6,8 @@
 #include "earth.h"
 #include "vec.h"
 
+static const double SDP_THRESH_FREQ = 1440.0 / 225.0;
 static const double XKMPER = 6378.135;
-static const double J_3 = -0.253881E-5;
 static const double ONE_HALF = 1.0 / 2.0;
 static const double THREE_HALVES = 3.0 / 2.0;
 static const double TWO_THIRDS = 2.0 / 3.0;
@@ -22,6 +22,10 @@ static const double S = 1.0122292801892716;
 static const double A_3_COMMA_0 = 2.53881E-06;
 
 sgp_result sgp4(tle_data *data, double minutes_since_epoch) {
+    if (data->rev_per_day < SDP_THRESH_FREQ) {
+        sgp_result fail = { {0}, {0}, {0}, {0} };
+        return fail;
+    }
 
     double i_0 = to_radians(data->inclination);
     double OMEGA_0 = to_radians(data->r_node_ascension);
@@ -43,7 +47,7 @@ sgp_result sgp4(tle_data *data, double minutes_since_epoch) {
         simple = 1;
     }
 
-    double perigee = (d_d_a_0 * (1 - data->eccentricity) - a_E) * XKMPER; /* TODO: Actual value */
+    double perigee = (d_d_a_0 * (1 - data->eccentricity) - a_E) * XKMPER;
     double s = S;
     double q_0_minus_s_pow_4 = Q_0;
     if (perigee >= 98 && perigee <= 156) {
@@ -200,9 +204,6 @@ sgp_result sgp4(tle_data *data, double minutes_since_epoch) {
 
     vec result_r = vec_mul(XKMPER, vec_mul(r_k, result_U));
     vec result_r_dot = vec_mul(XKMPER / 60, vec_add(vec_mul(r_dot_k, result_U), vec_mul(r_f_dot_k, result_V)));
-
-    vec_print(result_r);
-    vec_print(result_r_dot);
 
     sgp_result result = {result_U, result_V, result_r, result_r_dot};
     return result;

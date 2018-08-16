@@ -1,6 +1,11 @@
 #ifndef FATE_TLE_H
 #define FATE_TLE_H
 
+#include <stdio.h>
+
+/**
+ * A year represented as a 2-digit number
+ */
 typedef char *year;
 
 typedef struct {
@@ -52,6 +57,13 @@ typedef struct {
  * @return the TLE parsed data, or NULL on failure
  */
 tle_data *tle_parse(const char *title, const char *line1, const char *line2);
+
+/**
+ * Prints the given TLE data to the given stream.
+ *
+ * @param data the data to print
+ */
+void tle_print(FILE *stream, tle_data *data);
 
 /**
  * Relinquishes memory allocated to hold the tle_data

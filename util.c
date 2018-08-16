@@ -8,6 +8,8 @@ double cube(double);
 
 double to_radians(double);
 
+double to_degrees(double);
+
 double frac(double);
 
 char *substr(const char *str, int start, int len) {
