@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+#include <unistd.h>
 #include "tle.h"
 #include "sgp.h"
 #include "astrotime.h"
@@ -32,13 +34,21 @@ int main(int argc, char **argv) {
         if (data == NULL) {
             puts("Error occurred parsing data");
         } else {
-            jd target = to_jd(2018, 8, 16, 8, 44, 40);
             lat_lon observer = { 47, -122 };
-            look_result look = eci_to_look(data, observer, target);
-            lat_lon sub_point = eci_to_lat_lon(data, target);
 
-            printf("Look: %f %f\n", look.azimuth, look.altitude);
-            printf("Pos: %f, %f\n", sub_point.lat, sub_point.lon);
+            while (1) {
+                time_t cur_time = time(NULL);
+                struct tm *utc = gmtime(&cur_time);
+
+                jd target = to_jd(utc->tm_year + 1900, utc->tm_mon + 1, utc->tm_mday, utc->tm_hour, utc->tm_min, utc->tm_sec);
+                look_result look = eci_to_look(data, observer, target);
+                lat_lon sub_point = eci_to_lat_lon(data, target);
+
+                printf("Look: %f %f\n", look.azimuth, look.altitude);
+                printf("Pos: %f, %f\n", sub_point.lat, sub_point.lon);
+
+                sleep(1);
+            }
 
             tle_free(data);
         }

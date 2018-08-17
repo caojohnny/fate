@@ -77,7 +77,7 @@ look_result eci_to_look(tle_data *tle, lat_lon observer, jd time) {
     double top_z = cos(lat) * cos(theta) * rx
                    + cos(lat) * sin(theta) * ry
                    + sin(lat) * rz;
-    double az = atan2(-top_e, top_s);
+    double az = atan(-top_e / top_s);
     if (top_s > 0) {
         az = az + M_PI;
     }
