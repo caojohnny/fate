@@ -46,6 +46,7 @@ int main(int argc, char **argv) {
 
                 printf("Look: %f %f\n", look.azimuth, look.altitude);
                 printf("Pos: %f, %f\n", sub_point.lat, sub_point.lon);
+                puts("");
 
                 sleep(1);
             }
