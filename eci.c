@@ -9,16 +9,15 @@ const double f = 0.003352810665;
 const double esq = 0.006694379991;
 const double a = 6378.137;
 
-vec lat_lon_to_eci(double lat, double lon, gmst gst) {
-    double ra = atan2(sin(lon + gst), cos(lon + gst));
-    double dec = atan(tan(lat) * square(1.0 - f));
+vec lat_lon_to_eci(double lat, gmst theta) {
+    double C = 1 / sqrt(1 + f * (f - 2) * square(sin(lat)));
+    double S = square(1 - f) * C;
 
-    double rnx = cos(ra) * cos(dec);
-    double rny = sin(ra) * cos(dec);
-    double rnz = sin(dec);
-    double rs = a * (1 - f) / (sqrt(1 - f * (2 - f) * square(cos(dec))));
-    
-    vec result = {rnx * rs, rny * rs, rnz * rs};
+    double x = a * C * cos(lat) * cos(theta);
+    double y = a * C * cos(lat) * sin(theta);
+    double z = a * S * sin(lat);
+
+    vec result = {x, y, z};
     return result;
 }
 
@@ -60,7 +59,7 @@ look_result eci_to_look(tle_data *tle, lat_lon observer, jd time) {
     gmst gmst = to_gmst(time);
     double theta = fmod(gmst + lon, 2 * M_PI);
 
-    vec observer_eci = lat_lon_to_eci(lat, lon, gmst);
+    vec observer_eci = lat_lon_to_eci(lat, theta);
     sgp_result sgp_eci;
     if (tle_to_eci(&sgp_eci, tle, time) == 0) {
         look_result fail = { 0 };
