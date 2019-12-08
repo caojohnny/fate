@@ -1,9 +1,6 @@
-#include <stdlib.h>
 #include <math.h>
-#include <stdio.h>
 #include "sgp.h"
 #include "util.h"
-#include "earth.h"
 #include "vec.h"
 
 static const double SDP_THRESH_FREQ = 1440.0 / 225.0;

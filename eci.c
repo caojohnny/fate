@@ -1,7 +1,6 @@
 #include <math.h>
 #include "eci.h"
 #include "vec.h"
-#include "earth.h"
 #include "sgp.h"
 #include "util.h"
 

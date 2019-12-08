@@ -10,7 +10,7 @@
  *
  * CONSTRAINT: x <= 1.34E154
  */
-inline double square(double x) {
+static inline double square(double x) {
     return x * x;
 }
 
@@ -19,7 +19,7 @@ inline double square(double x) {
  *
  * CONSTRAINT:  x <= 5.64E102
  */
-inline double cube(double x) {
+static inline double cube(double x) {
     return x * x * x;
 }
 
@@ -29,7 +29,7 @@ inline double cube(double x) {
  * @param x the value which to obtain the fraction
  * @return the fractional portion
  */
-inline double frac(double x) {
+static inline double frac(double x) {
     return x - (long) x;
 }
 
@@ -39,7 +39,7 @@ inline double frac(double x) {
  * CONSTRAINT: x is in degrees
  * CONSTRAINT: x <= 1.14E306
  */
-inline double to_radians(double x) {
+static inline double to_radians(double x) {
     static const double MULTIPLIER = M_PI / 180;
 
     return x * MULTIPLIER;
@@ -51,7 +51,7 @@ inline double to_radians(double x) {
  * CONSTRAINT: x is in radians
  * CONSTRAINT: x <= 9.98E305
  */
-inline double to_degrees(double x) {
+static inline double to_degrees(double x) {
     static const double MULTIPLIER = 180 / M_PI;
 
     return x * MULTIPLIER;
